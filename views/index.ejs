@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>A Web Page</title>
+</head>
+<body>
+	<h2>The Dojo Post Board</h2>
+	<hr>
+	<form id="postPost" action="/postPost" method="post">
+		<p>Name:</p>
+		<input type="text" name="name">
+		<p>Post:</p>
+		<textarea cols="60" rows="4" name="text"></textarea>
+		<br>
+		<input type="Submit" value="Post post">
+	</form>
+	<% for (let post of posts) { %>
+		<div id="post">
+			<h3>Name: <%= post.name %></h3>
+			<h3>Post: <%= post.text %></h3>
+			<% for (let comment of post.comments) { %>
+				<div id='comment'>
+					<h5>Name: <%= comment.name %></h5>
+					<h5>Comment: <%= comment.text %></h5>
+				</div>
+			<% } %>
+			<form id="postComment" action="/postComment/<%= post.id %>" method="post">
+				<p>Name:</p>
+				<input type="text" name="name">
+				<p>Comment:</p>
+				<textarea cols="60" rows="4" name="text"></textarea>
+				<br>
+				<input type="Submit" value="Post comment">
+			</form>
+		</div>
+	<% } %>
+</body>
+</html>
